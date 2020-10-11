@@ -5,6 +5,19 @@
     <title>Ashoka_AP1</title>
 </head>
 <body>
-    <h1>Practice Page</h1>
+
+{% for product in products %}
+<table>
+    <tr>
+        <td>
+            {{product.title}}
+             - {{product.price}}
+             - {{product.availability}}
+             - {{product.category.name}}
+        </td>
+    </tr>
+</table>
+{% endfor %}
+
 </body>
 </html>
