@@ -5,7 +5,8 @@ from .models.category import Category
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['title', 'price', 'availability', 'category', 'image']
+    list_display = ['title', 'price', 'availability', 'category', 'rating', 'no_of_reviews','image']
+
 
 
 class AdminCategory(admin.ModelAdmin):
@@ -14,3 +15,4 @@ class AdminCategory(admin.ModelAdmin):
 
 admin.site.register(Product, AdminProduct)
 admin.site.register(Category, AdminCategory)
+
