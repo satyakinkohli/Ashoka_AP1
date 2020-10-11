@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ashoka_AP1</title>
+</head>
+<body>
+
+{% for product in products %}
+<table>
+    <tr>
+        <td>
+            {{product.title}}
+             - {{product.price}}
+             - {{product.availability}}
+             - {{product.category.name}}
+        </td>
+    </tr>
+</table>
+{% endfor %}
+
+</body>
+</html>

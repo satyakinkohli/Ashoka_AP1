@@ -4,6 +4,12 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from .models.product import Product
+
 
 def index(request):
-    return HttpResponse("Request Received")
+    products = Product.get_all_product()
+
+    return render(request, 'index.html', {'products': products})
+    # return HttpResponse("Request Received")
+
