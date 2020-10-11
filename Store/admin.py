@@ -8,7 +8,6 @@ class AdminProduct(admin.ModelAdmin):
     list_display = ['title', 'price', 'availability', 'category', 'rating', 'no_of_reviews','image']
 
 
-
 class AdminCategory(admin.ModelAdmin):
     list_display = ['name']
 
