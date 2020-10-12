@@ -21,5 +21,7 @@ def index(request):
     data = {'products': products, 'categories': categories}
 
     return render(request, 'index.html', data)
-    # return HttpResponse("Request Received")
 
+
+def signup(request):
+    return render(request, 'signup.html')
