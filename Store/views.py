@@ -10,11 +10,15 @@ from .models.category import Category
 
 
 def index(request):
-    products = Product.get_all_product()
     categories = Category.get_all_categories()
-    data = {}
-    data['products'] = products
-    data['categories'] = categories
+
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Product.get_all_product_by_categoryid(categoryID)
+    else:
+        products = Product.get_all_products()
+
+    data = {'products': products, 'categories': categories}
 
     return render(request, 'index.html', data)
     # return HttpResponse("Request Received")
