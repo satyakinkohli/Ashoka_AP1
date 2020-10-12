@@ -8,6 +8,8 @@ from .models.product import Product
 
 from .models.category import Category
 
+from .models.customer import Customer
+
 
 def index(request):
     categories = Category.get_all_categories()
@@ -24,4 +26,31 @@ def index(request):
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    
+    if request.method == 'GET':
+
+        return render(request, 'signup.html')
+
+    else:
+        data_posted = request.POST
+        email = data_posted.get('email')
+        password = data_posted.get('password')
+
+
+        #Validating
+
+        error = None
+
+        if len(password) < 6:
+            error = "Password must be atleast 6 characters."
+
+
+
+        #Saving
+        if not error:
+            
+
+            customer = Customer(email = email , password = password)
+            customer.register()
+        else:
+            return render(request , 'signup.html' , {'error' : error})
