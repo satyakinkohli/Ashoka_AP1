@@ -10,14 +10,13 @@
                 {% if error %}
                 <div class="alert alert-danger" role="alert">
                     {{error}}
-                
                 </div>
                 {% endif %}
                 
                 <!-- email -->
                 <div class="form-group">
                   <label for="Email">Email:</label>
-                  <input required type="email" name="email" id="" class="form-control" placeholder="example@gmail.com">
+                  <input required type="email" name="email" id="" value="{{saved_value.email}}" class="form-control" placeholder="example@gmail.com">
                 </div>
 
                 <!-- email -->
