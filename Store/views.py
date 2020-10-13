@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth.hashers import make_password, check_password 
+
 
 # Create your views here.
 
@@ -61,3 +62,20 @@ def signup(request):
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
+    else:
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        customer = Customer.get_customer_through_email(email)
+        error_message = None
+        if customer:
+            result = check_password(password ,customer.password)
+            
+            
+            if result:
+                return redirect("Nostalgia_Menu")
+            else:
+                error_message = "Incorrect email or password"
+        else:
+            error_message = "Incorrect email or password"
+
+        return render(request , 'login.html' , {'error' : error_message } )
