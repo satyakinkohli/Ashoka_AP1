@@ -9,6 +9,7 @@ from django.http import HttpResponse
 from .models.product import Product
 from .models.category import Category
 from .models.customer import Customer
+from django.views import View
 
 
 def home(request):
@@ -28,11 +29,11 @@ def index(request):
 
     return render(request, 'index.html', data)
 
-
-def signup(request):
-    if request.method == 'GET':
+class Signup(View):
+    def get(self,request):
         return render(request, 'signup.html')
-    else:
+
+    def post(self,request):
         data_posted = request.POST
         email = data_posted.get('email')
         password = data_posted.get('password')
@@ -59,10 +60,14 @@ def signup(request):
             return render(request, 'signup.html', data)
 
 
-def login(request):
-    if request.method == 'GET':
+
+
+class Login(View):
+    def get(self,request):
         return render(request, 'login.html')
-    else:
+
+
+    def post(Self,request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         customer = Customer.get_customer_through_email(email)
@@ -77,4 +82,7 @@ def login(request):
         else:
             error_message = "Incorrect email or password"
 
-    return render(request, 'login.html', {'error': error_message})
+        return render(request, 'login.html', {'error': error_message})
+
+
+        
