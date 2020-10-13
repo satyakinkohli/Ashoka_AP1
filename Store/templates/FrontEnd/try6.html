@@ -109,16 +109,35 @@ div {
 #hey {
   margin-top: -100px;
 }
+
+#go {
+  text-align: center;
+  padding: 13px;
+  align-self: center;
+  background-color: moccasin;
+  color: maroon;
+  border-radius: 12px;
+  font-family: "Lucida Console";
+  font-style: bold;
+  font-size: 17px;
+  margin-left: 43%;
+
+}
+
+
+
 </style>
 </head>
 <body>
 <h1> <img id = "logo" src="https://i.imgur.com/Ya0A3dW.png" width="170" height="170" alt="hello logo" position= "relative"> </h1>
 <h1 class="monospace"> Welcome to Nostalgia Store </h1> 
+<a href= "/menu"> <button id="go" type="button" onclick="alert('We miss Ashoka too!')">Check out the Menu!!</button> </a>
 <input type="text" placeholder="Search bar" name="search" size="50">
+
 
 <div id="example1">
   <h2 >What's New In The Store?</h2>
-  <p> <img src= "https://i.imgur.com/pxOynV7.png" width="400" height="400" alt="hello logo"> <img src= "https://i.imgur.com/8tVTVoa.png" width="350" height="350" alt="hello logo">  <img src= "https://i.imgur.com/68g1eTH.png" width="400" height="400" alt="hello logo">
+  <p> <a href = "/menu?category=1"> <img src= "https://i.imgur.com/pxOynV7.png" width="400" height="400" alt="hello logo"> </a> <a href ="/menu?category=5" > <img src= "https://i.imgur.com/8tVTVoa.png" width="350" height="350" alt="hello logo"> </a> <a href="/menu?category=3"> <img src= "https://i.imgur.com/68g1eTH.png" width="400" height="400" alt="hello logo"> </a>
 </p>
   <p id="high"> ORDER NOW!!!!! </p>
 </div>
