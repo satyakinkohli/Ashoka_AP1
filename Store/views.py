@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.hashers import make_password, check_password
 
 # Create your views here.
 
 from django.http import HttpResponse
 
 from .models.product import Product
-
 from .models.category import Category
-
 from .models.customer import Customer
 
 
@@ -47,8 +46,14 @@ def signup(request):
             error = "This email address already has another account linked with it."
 
         if not error:
+            customer.password = make_password('customer.password')
             customer.register()
             return redirect("Nostalgia_Home")
         else:
             data = {'error': error, 'saved_value': saved_value}
             return render(request, 'signup.html', data)
+
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
