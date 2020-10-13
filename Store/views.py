@@ -51,7 +51,7 @@ def signup(request):
             error = "This email address already has another account linked with it."
 
         if not error:
-            customer.password = make_password('customer.password')
+            # customer.password = make_password('customer.password')
             customer.register()
             return redirect("Nostalgia_Menu")
         else:
@@ -68,14 +68,13 @@ def login(request):
         customer = Customer.get_customer_through_email(email)
         error_message = None
         if customer:
-            result = check_password(password ,customer.password)
-            
-            
-            if result:
+            # result = check_password(password, customer.password)
+            if password == customer.password:
+            # if result:
                 return redirect("Nostalgia_Menu")
             else:
                 error_message = "Incorrect email or password"
         else:
             error_message = "Incorrect email or password"
 
-        return render(request , 'login.html' , {'error' : error_message } )
+    return render(request, 'login.html', {'error': error_message})
