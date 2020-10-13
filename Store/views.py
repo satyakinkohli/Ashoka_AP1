@@ -15,19 +15,44 @@ from django.views import View
 def home(request):
     return render(request, 'FrontEnd/try6.html')
 
+class Index(View):
 
-def index(request):
-    categories = Category.get_all_categories()
+    def post(self, request):
+        product = request.POST.get('product')
+        cart = request.session.get('cart')
+        print(request.session.get('cart'))
+        print(cart)
+        
 
-    categoryID = request.GET.get('category')
-    if categoryID:
-        products = Product.get_all_product_by_categoryid(categoryID)
-    else:
-        products = Product.get_all_products()
+        if cart:
+            quantity = cart.get(product)
+            if quantity:
+                cart[product] = quantity + 1
+            else:
+                cart[product] = 1
+        else:
+            cart = {}
+            cart[product] = 1
 
-    data = {'products': products, 'categories': categories}
+        request.session['cart'] = cart
+        print('cart', request.session['cart'])
+        return redirect('Nostalgia_Menu')
 
-    return render(request, 'index.html', data)
+
+    def get(self , request):
+        products = None
+        categories = Category.get_all_categories()
+
+        categoryID = request.GET.get('category')
+        if categoryID:
+            products = Product.get_all_product_by_categoryid(categoryID)
+        else:
+            products = Product.get_all_products()
+
+        data = {'products': products, 'categories': categories}
+        print('you are : ', request.session.get('email'))
+
+        return render(request, 'index.html', data)
 
 class Signup(View):
     def get(self,request):
@@ -76,6 +101,9 @@ class Login(View):
             # result = check_password(password, customer.password)
             if password == customer.password:
             # if result:
+                request.session['customer_id'] = customer.id
+                request.session['email'] = customer.email
+
                 return redirect("Nostalgia_Menu")
             else:
                 error_message = "Incorrect email or password"
