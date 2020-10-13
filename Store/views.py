@@ -15,14 +15,12 @@ from django.views import View
 def home(request):
     return render(request, 'FrontEnd/try6.html')
 
-class Index(View):
 
+class Index(View):
     def post(self, request):
         product = request.POST.get('product')
+        print(product)
         cart = request.session.get('cart')
-        print(request.session.get('cart'))
-        print(cart)
-        
 
         if cart:
             quantity = cart.get(product)
@@ -31,15 +29,13 @@ class Index(View):
             else:
                 cart[product] = 1
         else:
-            cart = {}
-            cart[product] = 1
+            cart = {product: 1}
 
         request.session['cart'] = cart
         print('cart', request.session['cart'])
         return redirect('Nostalgia_Menu')
 
-
-    def get(self , request):
+    def get(self, request):
         products = None
         categories = Category.get_all_categories()
 
@@ -54,11 +50,12 @@ class Index(View):
 
         return render(request, 'index.html', data)
 
+
 class Signup(View):
-    def get(self,request):
+    def get(self, request):
         return render(request, 'signup.html')
 
-    def post(self,request):
+    def post(self, request):
         data_posted = request.POST
         email = data_posted.get('email')
         password = data_posted.get('password')
@@ -85,25 +82,21 @@ class Signup(View):
             return render(request, 'signup.html', data)
 
 
-
-
 class Login(View):
-    def get(self,request):
+    def get(self, request):
         return render(request, 'login.html')
 
-
-    def post(Self,request):
+    def post(self, request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         customer = Customer.get_customer_through_email(email)
         error_message = None
         if customer:
             # result = check_password(password, customer.password)
-            if password == customer.password:
             # if result:
+            if password == customer.password:
                 request.session['customer_id'] = customer.id
                 request.session['email'] = customer.email
-
                 return redirect("Nostalgia_Menu")
             else:
                 error_message = "Incorrect email or password"
@@ -111,6 +104,3 @@ class Login(View):
             error_message = "Incorrect email or password"
 
         return render(request, 'login.html', {'error': error_message})
-
-
-        

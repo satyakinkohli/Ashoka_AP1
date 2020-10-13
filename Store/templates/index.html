@@ -25,18 +25,18 @@
         <div id='products' class="col-lg-9 mx-auto">
           <div class="row mx-auto">
             {% for product in products %}
-          <div class="card mx-auto mb-3 mt-3" style="width: 18rem;">
-            <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{product.title}}</h5> 
-              <p class="card-text">{{product.price}}</p>
-              {{product | is_in_cart }}
-              <p class="card-text">{{product.category}}</p>
-              <form action="/menu" metho="POST">
-                {% csrf_token %}
-                <input hidden type="text" name ='product' value='{{product.id}}'>
+            <div class="card mx-auto mb-3 mt-3" style="width: 18rem;">
+              <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{product.title}}</h5>
+                <p class="card-text">{{product.price}}</p>
+                {{ product | is_in_cart:request.session.cart }}
+                <p class="card-text">{{product.category}}</p>
+                <form action="/menu" method="POST">
+                  {% csrf_token %}
+                  <input hidden type="text" name ='product' value='{{product.id}}'>
                 <input type= "submit" class="btn btn-primary" value="Add To Cart">
-              </form>
+                </form>
             </div>
           </div>
         {% endfor %}
