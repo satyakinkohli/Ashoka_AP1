@@ -10,6 +10,10 @@ from .models.category import Category
 from .models.customer import Customer
 
 
+def home(request):
+    return render(request, 'FrontEnd/try6.html')
+
+
 def index(request):
     categories = Category.get_all_categories()
 
@@ -48,7 +52,7 @@ def signup(request):
         if not error:
             customer.password = make_password('customer.password')
             customer.register()
-            return redirect("Nostalgia_Home")
+            return redirect("Nostalgia_Menu")
         else:
             data = {'error': error, 'saved_value': saved_value}
             return render(request, 'signup.html', data)
