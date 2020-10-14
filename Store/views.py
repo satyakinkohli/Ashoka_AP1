@@ -107,8 +107,8 @@ class Login(View):
             # result = check_password(password, customer.password)
             # if result:
             if password == customer.password:
-                request.session['customer_id'] = customer.id
-                request.session['email'] = customer.email
+                request.session['customer'] = customer.id
+                
                 return redirect("Nostalgia_Menu")
             else:
                 error_message = "Incorrect email or password"
@@ -116,3 +116,16 @@ class Login(View):
             error_message = "Incorrect email or password"
 
         return render(request, 'login.html', {'error': error_message})
+
+def logout(request):
+    request.session.clear()
+    return redirect('/')
+
+#from Store.models.product import Product
+class Cart(View):
+    def get(self, request):
+        #ids = list(request.session.get('cart').keys())
+        #products = Product.get_products_by_id(ids)
+        #print(products)
+        #return render(request, 'cart.html', {'products': products})
+        return render(request, 'cart.html')

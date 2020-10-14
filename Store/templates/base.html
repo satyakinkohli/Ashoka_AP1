@@ -31,17 +31,31 @@
 
          
         </ul>
-
+ 
         <ul class="navbar-nav my-2 my-lg-0">
+          {% if request.session.customer %}
+      
           <li class="nav-item">
-            <a class="nav-link" colors href="#" style="color: white">Logout <span class="sr-only">(current)</span></a>
+            <a class="nav-link" colors href="/orders" style="color: white">Orders <span class="sr-only">(current)</span></a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link" href="/signup" style="color: white">Signup <span class="sr-only">(current)</span></a>-->
-<!--          </li>-->
+          <li class="nav-item">
+            <a class="nav-link" colors href="/logout" style="color: white">Logout <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" colors href="/cart" style="color: white"> <img src="https://image.flaticon.com/icons/png/512/126/126083.png" width=33 height=33> <span class="sr-only">(current)</span></a>
+          </li>
+          {% else %}
+        <!--  <li class="nav-item"> -->
+           <!-- <a class="nav-link" href="/signup" style="color: white">Signup <span class="sr-only">(current)</span></a> -->
+           <!-- </li> -->
           <li class="nav-item">
             <a class="nav-link" href="/login" style="color: white">Login <span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" colors href="/cart" style="color: white"> <img src="https://image.flaticon.com/icons/png/512/126/126083.png" width=33 height=33> <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+            
       
         
           
