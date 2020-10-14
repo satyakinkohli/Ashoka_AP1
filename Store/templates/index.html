@@ -30,14 +30,51 @@
               <div class="card-body">
                 <h5 class="card-title">{{product.title}}</h5>
                 <p class="card-text">{{product.price}}</p>
-                {{ product | is_in_cart:request.session.cart }}
+                <!--{{ product | is_in_cart:request.session.cart }} -->
                 <p class="card-text">{{product.category}}</p>
-                <form action="/menu" method="POST">
+                
+            </div>
+
+            <div class= "card-footer no -gutters">
+
+              {% if product|is_in_cart:request.session.cart %}
+
+              <div class = "row no-gutters" >         
+  
+                <form action = "/menu" method = "post" class = "col-2">
                   {% csrf_token %}
                   <input hidden type="text" name ='product' value='{{product.id}}'>
-                <input type= "submit" class="btn btn-primary" value="Add To Cart">
+                  <input hidden type="text" name ='remove' value='True'>
+                  <input type ="submit" value = " - " class =" btn btn-block btn-light">
                 </form>
+
+
+                <div class ="text-center col" > {{product|cart_qty:request.session.cart}} in cart </div>
+
+
+                <form action = "/menu" method = "post" class = "col-2">
+                  {% csrf_token %}
+                  <input hidden type="text" name ='product' value='{{product.id}}'>
+                  
+                  <input type ="submit" value = " + " class =" btn btn-block btn-light">
+                </form>
+                
+              </div>
+
+              {% else %}
+
+              <form action="/menu" method="POST">
+                {% csrf_token %}
+                <input hidden type="text" name ='product' value='{{product.id}}'>
+              <input type= "submit" class="btn btn-primary" value="Add To Cart">
+              </form>
+              {% endif %}
+  
+  
+              
+
             </div>
+            
           </div>
         {% endfor %}
           </div>
