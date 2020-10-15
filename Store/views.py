@@ -132,5 +132,5 @@ class Cart(View):
 
 def checkout(request):
     # URGENT: add to orders
-    request.session.clear()
+    request.session['cart'] = {}
     return render(request, 'checkout.html')
