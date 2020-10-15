@@ -60,7 +60,7 @@
           {% if request.session.customer %}
           
           <div class="dropdown">
-            <span><p style="margin-top: 15px; color: white">Hello, {{request.session.customer}}</p></span>
+            <span><p style="margin-top: 15px; color: white">Hello, {{request.session.email}}</p></span>
             <div class="dropdown-content">
               <p><li class="nav-item">
               <a class="nav-link" colors href="/orders" style="color: maroon">Orders <span class="sr-only">(current)</span></a>

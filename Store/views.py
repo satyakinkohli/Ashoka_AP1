@@ -104,6 +104,7 @@ class Login(View):
             # if result:
             if password == customer.password:
                 request.session['customer'] = customer.id
+                request.session['email'] = customer.email
                 
                 return redirect("Nostalgia_Menu")
             else:
