@@ -120,6 +120,17 @@ def logout(request):
 
 class Cart(View):
     def get(self, request):
-        ids = list(request.session.get('cart').keys())
-        products = Product.get_all_product_by_id(ids)
-        return render(request, 'cart.html', {'products': products})
+        cart = request.session.get('cart')
+        if not cart:
+            request.session.cart = {}
+            return render(request, 'cart.html')
+        else:
+            ids = list(request.session.get('cart').keys())
+            products = Product.get_all_product_by_id(ids)
+            return render(request, 'cart.html', {'products': products})
+
+
+def checkout(request):
+    # URGENT: add to orders
+    request.session.clear()
+    return render(request, 'checkout.html')

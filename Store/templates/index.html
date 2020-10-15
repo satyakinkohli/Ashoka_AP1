@@ -29,8 +29,8 @@
               <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{product.title}}</h5>
-                <p class="card-text">{{product.price}}</p>
-                <!--{{ product | is_in_cart:request.session.cart }} -->
+                <p class="card-text">₹ {{product.price}}</p>
+                <!-- {{ product | is_in_cart:request.session.cart }} -->
                 <p class="card-text">{{product.category}}</p>
                 
             </div>
