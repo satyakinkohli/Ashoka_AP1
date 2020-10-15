@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% load cart %}
+
+
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center">Your Orders</p>
+        <table class="table mx-auto">
+            
+            <thead>
+                <tr class="text-center">
+                    <th></th>
+                    <th>Product</th>
+                    <th>Ordering from</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for product in products %}
+                
+                <tr class="text-center">
+                    <td><img style="height: 100px;" src="{{product.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="Product Image"></td>
+                    <td>{{product.title}}</td>
+                    <td>{{product.category}}</td>
+                    <td>₹ {{product.price}}</td>
+                    <td>{{product|cart_qty:request.session.cart}}</td>
+                    <td>₹ {{product|item_total:request.session.cart}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+            <tfoot>
+                <tr class="text-center">
+                    <th colspan="5"></th>
+                    <th>
+                        ₹ {{products|cart_total:request.session.cart}}
+                    </th>
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <div class="m-3 p-1">
+            <a href="/checkout" class="btn btn-sm btn-info col-lg-3 float-right">Checkout</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

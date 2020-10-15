@@ -9,6 +9,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Ashoka_AP1 Website</title>
+
+    <style>
+
+.dropdown {
+            position: relative;
+            display: inline-block;
+          }
+          
+          .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            padding: 12px 16px;
+            z-index: 1;
+          }
+          
+          .dropdown:hover .dropdown-content {
+            display: block;
+          }
+          </style>
+    </style>
   </head>
   <body style="background-color:cornsilk;"> 
 
@@ -32,13 +55,20 @@
  
         <ul class="navbar-nav my-2 my-lg-0">
           {% if request.session.customer %}
-      
-          <li class="nav-item">
-            <a class="nav-link" colors href="/orders" style="color: white">Orders <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" colors href="/logout" style="color: white">Logout <span class="sr-only">(current)</span></a>
-          </li>
+          
+          <div class="dropdown">
+            <span><p style="margin-top: 15px; color: white">Hello, (Name)</p></span>
+            <div class="dropdown-content">
+              <p><li class="nav-item">
+              <a class="nav-link" colors href="/orders" style="color: maroon">Orders <span class="sr-only">(current)</span></a>
+            </li></p>
+            <p>
+              <li class="nav-item">
+                <a class="nav-link" colors href="/logout" style="color: maroon">Logout <span class="sr-only">(current)</span></a>
+              </li>
+            </p>
+            </div>
+          </div>
           <li class="nav-item">
             <a class="nav-link" colors href="/cart" style="color: white"> <img src="https://image.flaticon.com/icons/png/512/126/126083.png" width=33 height=33> <span class="sr-only">(current)</span></a>
           </li>
