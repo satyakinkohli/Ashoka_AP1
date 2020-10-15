@@ -8,10 +8,10 @@
 <div class="container">
     <div class="border rounded p-4 m-4">
         <p class="display-4 text-center"><u>Cart</u></p>
-        <table class="table">
+        <table class="table mx-auto">
             
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th></th>
                     <th>Product</th>
                     <th>Ordering from</th>
@@ -24,7 +24,7 @@
                 
                 {% for product in products %}
                 
-                <tr>
+                <tr class="text-center">
                     <td><img style="height: 75px;" src="{{product.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="Product Image"></td>
                     <td>{{product.title}}</td>
                     <td>{{product.category}}</td>
@@ -38,7 +38,7 @@
             </tbody>
 
             <tfoot>
-                <tr>
+                <tr class="text-center">
                     <th colspan="5"></th>
                     <th>
                         {{products|cart_total:request.session.cart}}
