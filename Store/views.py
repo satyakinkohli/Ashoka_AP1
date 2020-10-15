@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from .models.product import Product
 from .models.category import Category
 from .models.customer import Customer
+from .models.orders import Order
 from django.views import View
 
 
@@ -132,5 +133,22 @@ class Cart(View):
 
 def checkout(request):
     # URGENT: add to orders
+    
+    customer = request.session.get('customer')
+    cart = request.session.get('cart')
+    products = Product.get_all_product_by_id(list(cart.keys()))
+    #print(customer , cart , products)
+
+    
+    for product in products:
+        order=Order(customer = Customer(id = customer) ,
+                    product = product ,
+                    price= product.price , 
+                    category = product.category , 
+                    quantity = cart.get(str(product.id)) )
+        order.place_order()
+
+
     request.session['cart'] = {}
+
     return render(request, 'checkout.html')

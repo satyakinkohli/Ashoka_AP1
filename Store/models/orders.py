@@ -13,6 +13,8 @@ class Order(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default='')
     quantity = models.PositiveSmallIntegerField(default=1)
     price = models.PositiveIntegerField()
-    phone = models.CharField(max_length=15, default='')
-    address = models.CharField(max_length=50, default='')
     date = models.DateField(default=timezone.now)
+
+
+    def place_order(self):
+    	self.save()
