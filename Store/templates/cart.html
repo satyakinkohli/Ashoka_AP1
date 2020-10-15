@@ -3,7 +3,58 @@
 
 {% block content %}
 
+{% load cart %}
 
-<h1> cart </h1>
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center"><u>Cart</u></p>
+        <table class="table">
+            
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th>Ordering from</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for product in products %}
+                
+                <tr>
+                    <td><img style="height: 75px;" src="{{product.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="Product Image"></td>
+                    <td>{{product.title}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product|cart_qty:request.session.cart}}</td>
+                    <td>{{product|item_total:request.session.cart}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th colspan="5"></th>
+                    <th>
+                        {{products|cart_total:request.session.cart}}
+                    </th>
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <div class="m-4 p-1">
+            <a href="buynow" class="btn btn-sm btn-info col-lg-3 float-right">Checkout</a>
+        </div>
+
+    </div>
+
+</div>
+
 
 {% endblock %}

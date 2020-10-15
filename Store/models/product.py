@@ -12,9 +12,9 @@ class Product(models.Model):
     image = models.ImageField(upload_to='upload/products/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
 
-    #@staticmethod
-    #def get_all_product_by_id(ids):
-     #   return Product.objects.filter(id__in=ids)
+    @staticmethod
+    def get_all_product_by_id(ids):
+        return Product.objects.filter(id__in=ids)
 
 
     @staticmethod

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.hashers import make_password, check_password 
-
+# from django.contrib.auth.hashers import make_password, check_password
 
 # Create your views here.
 
@@ -20,15 +19,13 @@ class Index(View):
     def post(self, request):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
-
-        #print(product)
         cart = request.session.get('cart')
 
         if cart:
             quantity = cart.get(product)
             if quantity:
                 if remove:
-                    if quantity <=1:
+                    if quantity <= 1:
                         cart.pop(product)
                     else:
                         cart[product] = quantity - 1
@@ -40,7 +37,6 @@ class Index(View):
             cart = {product: 1}
 
         request.session['cart'] = cart
-        print('cart', request.session['cart'])
         return redirect('Nostalgia_Menu')
 
     def get(self, request):
@@ -58,7 +54,6 @@ class Index(View):
             products = Product.get_all_products()
 
         data = {'products': products, 'categories': categories}
-        print('you are : ', request.session.get('email'))
 
         return render(request, 'index.html', data)
 
@@ -117,15 +112,14 @@ class Login(View):
 
         return render(request, 'login.html', {'error': error_message})
 
+
 def logout(request):
     request.session.clear()
     return redirect('/')
 
-#from Store.models.product import Product
+
 class Cart(View):
     def get(self, request):
-        #ids = list(request.session.get('cart').keys())
-        #products = Product.get_products_by_id(ids)
-        #print(products)
-        #return render(request, 'cart.html', {'products': products})
-        return render(request, 'cart.html')
+        ids = list(request.session.get('cart').keys())
+        products = Product.get_all_product_by_id(ids)
+        return render(request, 'cart.html', {'products': products})
