@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from .views import Index, Login, Signup, home, logout, Cart, checkout
+from .views import Index, Login, Signup, home, logout, Cart, checkout, Order_View
 
 urlpatterns = [
     path('', home, name="Nostalgia_Home"),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('logout', logout, name='logout'),
     path('cart', Cart.as_view(), name='cart'),
     path('checkout', checkout, name='checkout'),
+    path('orders', Order_View.as_view(), name='orders'),
 ]

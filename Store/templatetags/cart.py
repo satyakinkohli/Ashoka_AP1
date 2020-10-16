@@ -34,3 +34,8 @@ def cart_total(products, cart):
         total += item_total(product, cart)
 
     return total
+
+
+@register.filter(name='multiply')
+def multiply(number0, number1):
+    return number0 * number1

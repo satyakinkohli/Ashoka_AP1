@@ -105,7 +105,7 @@ class Login(View):
             if password == customer.password:
                 request.session['customer'] = customer.id
                 request.session['email'] = customer.email
-                
+
                 return redirect("Nostalgia_Menu")
             else:
                 error_message = "Incorrect email or password"
@@ -133,23 +133,27 @@ class Cart(View):
 
 
 def checkout(request):
-    # URGENT: add to orders
-    
     customer = request.session.get('customer')
     cart = request.session.get('cart')
     products = Product.get_all_product_by_id(list(cart.keys()))
-    #print(customer , cart , products)
 
-    
     for product in products:
-        order=Order(customer = Customer(id = customer) ,
-                    product = product ,
-                    price= product.price , 
-                    category = product.category , 
-                    quantity = cart.get(str(product.id)) )
-        order.place_order()
+        order = Order(customer=Customer(id=customer),
+                      product=product,
+                      price=product.price,
+                      category=product.category,
+                      quantity=cart.get(str(product.id)))
 
+        order.place_order()
 
     request.session['cart'] = {}
 
     return render(request, 'checkout.html')
+
+
+class Order_View(View):
+    def get(self, request):
+        customer = request.session.get('customer')
+        orders = Order.get_orders_by_customerid(customer)
+        orders = orders.reverse()
+        return render(request, 'orders.html', {'orders': orders})
