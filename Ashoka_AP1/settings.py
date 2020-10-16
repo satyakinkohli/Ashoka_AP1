@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'Store.middlewares.auth.auth_middleware'
 ]
 
 ROOT_URLCONF = 'Ashoka_AP1.urls'

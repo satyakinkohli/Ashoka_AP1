@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect , HttpResponseRedirect
 # from django.contrib.auth.hashers import make_password, check_password
 
 # Create your views here.
@@ -10,7 +10,8 @@ from .models.category import Category
 from .models.customer import Customer
 from .models.orders import Order
 from django.views import View
-
+from Store.middlewares.auth import auth_middleware
+from django.utils.decorators import method_decorator
 
 def home(request):
     return render(request, 'FrontEnd/try6.html')
@@ -93,7 +94,9 @@ class Signup(View):
 
 
 class Login(View):
+    return_url = None
     def get(self, request):
+        Login.return_url = request.GET.get('return_url')
         return render(request, 'login.html')
 
     def post(self, request):
@@ -108,7 +111,14 @@ class Login(View):
                 request.session['customer'] = customer.id
                 request.session['name'] = customer.name
 
-                return redirect("Nostalgia_Menu")
+                if Login.return_url:
+                    return HttpResponseRedirect(Login.return_url)
+
+                else:
+                    Login.return_url = None
+                    return redirect("Nostalgia_Menu")
+
+                
             else:
                 error_message = "Incorrect email or password"
         else:
@@ -133,7 +143,7 @@ class Cart(View):
             products = Product.get_all_product_by_id(ids)
             return render(request, 'cart.html', {'products': products})
 
-
+@auth_middleware
 def checkout(request):
     customer = request.session.get('customer')
     cart = request.session.get('cart')
@@ -154,6 +164,8 @@ def checkout(request):
 
 
 class Order_View(View):
+
+    @method_decorator(auth_middleware)
     def get(self, request):
         customer = request.session.get('customer')
         orders = Order.get_orders_by_customerid(customer)
