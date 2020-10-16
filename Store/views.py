@@ -65,16 +65,18 @@ class Signup(View):
 
     def post(self, request):
         data_posted = request.POST
+        name = data_posted.get('name')
         email = data_posted.get('email')
         password = data_posted.get('password')
 
         saved_value = {
-            'email': email
+            'email': email,
+            'name': name
         }
 
         error = None
 
-        customer = Customer(email=email, password=password)
+        customer = Customer(name=name, email=email, password=password)
 
         if len(password) < 6:
             error = "Password must be at least 6 characters long."
@@ -104,7 +106,7 @@ class Login(View):
             # if result:
             if password == customer.password:
                 request.session['customer'] = customer.id
-                request.session['email'] = customer.email
+                request.session['name'] = customer.name
 
                 return redirect("Nostalgia_Menu")
             else:
