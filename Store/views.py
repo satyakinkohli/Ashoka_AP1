@@ -13,6 +13,7 @@ from django.views import View
 from Store.middlewares.auth import auth_middleware
 from django.utils.decorators import method_decorator
 
+
 def home(request):
     return render(request, 'FrontEnd/try6.html')
 
@@ -95,6 +96,7 @@ class Signup(View):
 
 class Login(View):
     return_url = None
+
     def get(self, request):
         Login.return_url = request.GET.get('return_url')
         return render(request, 'login.html')
@@ -113,12 +115,9 @@ class Login(View):
 
                 if Login.return_url:
                     return HttpResponseRedirect(Login.return_url)
-
                 else:
                     Login.return_url = None
                     return redirect("Nostalgia_Menu")
-
-                
             else:
                 error_message = "Incorrect email or password"
         else:
@@ -142,6 +141,7 @@ class Cart(View):
             ids = list(request.session.get('cart').keys())
             products = Product.get_all_product_by_id(ids)
             return render(request, 'cart.html', {'products': products})
+
 
 @auth_middleware
 def checkout(request):

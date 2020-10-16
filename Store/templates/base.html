@@ -1,4 +1,4 @@
-{%load cart %}
+{% load cart %}
 
 <!doctype html>
 <html lang="en">
@@ -67,7 +67,7 @@
           {% if request.session.customer %}
           
           <div class="dropdown">
-            <span><p style="margin-top: 15px; color: white">Hello, {{request.session.name}}</p></span>
+            <span><p style="margin-top: 15px; color: white"> Hello, {{request.session.name}}</p></span>
             <div class="dropdown-content">
               <p><li class="nav-item">
               <a class="nav-link" colors href="/orders" style="color: maroon">Orders <span class="sr-only">(current)</span></a>
@@ -82,7 +82,7 @@
           <li class="nav-item">
             <a class="nav-link" colors href="/cart" style="color: black"> <img src="https://image.flaticon.com/icons/png/512/126/126083.png" width=33 height=33> 
               
-              <span class="badge badge-info", id="alright"> {{request.session.cart.keys|length}}  </span> 
+              <span class="badge badge-info", id="alright"> {{request.session.cart|total_products}}  </span> 
               <span class="sr-only">(current)</span></a>
           </li>
           {% else %}
@@ -95,7 +95,7 @@
           <li class="nav-item">
             <a class="nav-link" colors href="/cart" style="color: black"> <img src="https://image.flaticon.com/icons/png/512/126/126083.png" width=33 height=33> 
               
-              <span class="badge badge-info", id="alright"> {{request.session.cart.keys|length}}  </span>
+              <span class="badge badge-info", id="alright"> {{request.session.cart|total_products}}  </span>
               <span class="sr-only">(current)</span></a>
           </li>
           {% endif %}

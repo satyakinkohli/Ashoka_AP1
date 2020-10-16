@@ -41,11 +41,11 @@ def multiply(number0, number1):
     return number0 * number1
 
 
-
 @register.filter(name='total_products')
 def total_products(cart):
     sum = 0
-    for x in cart.values():
-        sum += int(x)
+    if cart:
+        for x in cart.values():
+            sum += int(x)
 
     return sum
