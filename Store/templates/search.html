@@ -8,15 +8,19 @@
 </head>
 <body>
 
-<h1>Search Results</h1>
+  <div id='products' class="col-lg-9 mx-auto">
+    <div class="row mx-auto" id="life2">
+      {% for food in object_list %}
+      <div class="card mx-auto mb-3 mt-3" id={{food.id}} style="width: 18rem;">
+        <img class="card-img-top" src="{{food.image.url}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{food.title}}</h5>
+          <p class="card-text">₹ {{food.price}}</p>
+          <p class="card-text">{{food.category}}</p>
+        
+        {% endfor %}
+      </div>
 
-<ul>
-  {% for food in object_list %}
-    <li>
-      {{ food.title }}
-    </li>
-  {% endfor %}
-</ul>
 
 
 
