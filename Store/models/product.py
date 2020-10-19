@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import Q
+
 from .category import Category
 
 
@@ -26,3 +28,4 @@ class Product(models.Model):
             return Product.objects.filter(category=category_id)
         else:
             return Product.get_all_products()
+

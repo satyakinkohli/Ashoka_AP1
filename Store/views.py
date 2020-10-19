@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect , HttpResponseRedirect
 # from django.contrib.auth.hashers import make_password, check_password
 
@@ -10,6 +11,7 @@ from .models.category import Category
 from .models.customer import Customer
 from .models.orders import Order
 from django.views import View
+from django.views.generic.list import ListView
 from Store.middlewares.auth import auth_middleware
 from django.utils.decorators import method_decorator
 
@@ -164,10 +166,21 @@ def checkout(request):
 
 
 class Order_View(View):
-
     @method_decorator(auth_middleware)
     def get(self, request):
         customer = request.session.get('customer')
         orders = Order.get_orders_by_customerid(customer)
         orders = orders.reverse()
         return render(request, 'orders.html', {'orders': orders})
+
+
+class SearchResults(ListView):
+    model = Product
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(title__icontains=query)
+        )
+        return object_list

@@ -99,7 +99,13 @@ form.example button {
 
 
           
-          <li> <form class="example"> <input type="text" placeholder="Find your food" name="search" size="50" > <button type="submit"><i class="fa fa-search"></i></button> </form> </li>
+          <li> <form action="{% url 'search' %}" method="GET">
+            <input type="text" placeholder="Find your food" name="q" size="50" > 
+            <button type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+            </form> 
+          </li>
     
         </ul>
  
