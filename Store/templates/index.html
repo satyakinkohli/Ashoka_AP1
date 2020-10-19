@@ -5,15 +5,33 @@
 {% load cart %}
   
 <! - - body - - >
+
+<style>
+
+  #life {
+    background-color:#132743 ;
+  }
+
+  #life2 {
+    background-color: #edc988;
+  }
+
+  #life3 {
+    color: #132743;
+  }
+
+  
+
+</style>
     <div class="container-fluid mt-3">
       <div class="row">
 
         <! - - filter - - >
 
         <div class="col-lg-3 mx-auto">
-          <div class="list-group mt-3">
+          <div class="list-group mt-3" >
 
-            <a href="/menu" class="list-group-item list-group-item-action">All Products</a>
+            </h5><a href="/menu" class="list-group-item list-group-item-action">All Products</a> 
 
             {% for category in categories %}
             <a href="/menu?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
@@ -23,7 +41,7 @@
 
         <! - - all products - - >
         <div id='products' class="col-lg-9 mx-auto">
-          <div class="row mx-auto">
+          <div class="row mx-auto" id="life2">
             {% for product in products %}
             <div class="card mx-auto mb-3 mt-3" id={{product.id}} style="width: 18rem;">
               <img class="card-img-top" src="{{product.image.url}}" alt="Card image cap">
@@ -66,7 +84,7 @@
               <form action="/menu#{{product.id}}" method="POST">
                 {% csrf_token %}
                 <input hidden type="text" name ='product' value='{{product.id}}'>
-              <input type= "submit" class="btn btn-primary" value="Add To Cart">
+              <input type= "submit" class="btn btn-primary" id="life" value="Add To Cart">
               </form>
               {% endif %}
   
