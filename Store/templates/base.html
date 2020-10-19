@@ -3,13 +3,15 @@
 <!doctype html>
 <html lang="en">
   <head>
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Ashoka_AP1 Website</title>
 
     <style>
@@ -41,18 +43,32 @@
             color:black;
           }
 
-          input[type=text] {
-  width: 130px;
+          form.example input[type=text] {
+  padding: 5px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  margin-left:10%;
+  width: 40%;
+  background: #f1f1f1;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
+          
+        
 
-/* When the input field gets focus, change its width to 100% */
-input[type=text]:focus {
-  width: 70%;
+form.example button {
+  float: right;
+  width: 10%;
+  margin-right:40%;
+  padding: 5px;
+  background: moccasin;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
 }
-
-
 
 
 
@@ -83,7 +99,7 @@ input[type=text]:focus {
 
 
           
-          <li> <input type="text" placeholder="Find your food" name="search" size="50" > </li>
+          <li> <form class="example"> <input type="text" placeholder="Find your food" name="search" size="50" > <button type="submit"><i class="fa fa-search"></i></button> </form> </li>
     
         </ul>
  
