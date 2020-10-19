@@ -4,16 +4,26 @@
 
 <body>
 
+        <div class="col-lg-3 mx-auto">
+          <div class="list-group mt-3" >
+
+            </h5><a href="/menu" class="list-group-item list-group-item-action">All Products</a>
+
+            {% for category in categories %}
+            <a href="/menu?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
+            {% endfor %}
+          </div>
+        </div>
+
   <div id='products' class="col-lg-9 mx-auto">
     <div class="row mx-auto" id="life2">
-      {% for food in object_list %}
+      {% for food in queryset %}
       <div class="card mx-auto mb-3 mt-3" id={{food.id}} style="width: 18rem;">
         <img class="card-img-top" src="{{food.image.url}}" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{food.title}}</h5>
           <p class="card-text">₹ {{food.price}}</p>
           <p class="card-text">{{food.category}}</p>
-        
         {% endfor %}
       </div>
 

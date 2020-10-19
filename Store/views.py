@@ -174,13 +174,25 @@ class Order_View(View):
         return render(request, 'orders.html', {'orders': orders})
 
 
-class SearchResults(ListView):
-    model = Product
-    template_name = 'search.html'
+# class SearchResults(ListView):
+#     model = Product
+#     template_name = 'search.html'
+#
+#     def get_queryset(self):
+#         query = self.request.GET.get('q')
+#         object_list = Product.objects.filter(
+#             Q(title__icontains=query)
+#         )
+#         return object_list
 
-    def get_queryset(self):
-        query = self.request.GET.get('q')
-        object_list = Product.objects.filter(
-            Q(title__icontains=query)
-        )
-        return object_list
+def BootstrapFilterView(request):
+    categories = Category.get_all_categories()
+    qs = Product.objects.all()
+    query = request.GET.get('q')
+
+    qs = qs.filter(title__icontains=query)
+    stuff = {
+        'queryset': qs,
+        'categories': categories
+    }
+    return render(request, 'search.html', stuff)
