@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.shortcuts import render, redirect , HttpResponseRedirect
 # from django.contrib.auth.hashers import make_password, check_password
 
@@ -11,7 +10,6 @@ from .models.category import Category
 from .models.customer import Customer
 from .models.orders import Order
 from django.views import View
-from django.views.generic.list import ListView
 from Store.middlewares.auth import auth_middleware
 from django.utils.decorators import method_decorator
 
@@ -174,25 +172,16 @@ class Order_View(View):
         return render(request, 'orders.html', {'orders': orders})
 
 
-# class SearchResults(ListView):
-#     model = Product
-#     template_name = 'search.html'
-#
-#     def get_queryset(self):
-#         query = self.request.GET.get('q')
-#         object_list = Product.objects.filter(
-#             Q(title__icontains=query)
-#         )
-#         return object_list
-
 def BootstrapFilterView(request):
     categories = Category.get_all_categories()
+    cart = request.session.get('cart')
     qs = Product.objects.all()
     query = request.GET.get('q')
 
     qs = qs.filter(title__icontains=query)
     stuff = {
         'queryset': qs,
-        'categories': categories
+        'categories': categories,
+        'cart': cart
     }
     return render(request, 'search.html', stuff)

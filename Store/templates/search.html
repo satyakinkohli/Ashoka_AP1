@@ -2,18 +2,20 @@
 
 {% block content %}
 
+{% load cart %}
+
 <body>
 
-        <div class="col-lg-3 mx-auto">
-          <div class="list-group mt-3" >
+  <div class="col-lg-3 mx-auto">
+    <div class="list-group mt-3" >
 
             </h5><a href="/menu" class="list-group-item list-group-item-action">All Products</a>
 
             {% for category in categories %}
             <a href="/menu?category={{category.id}}" class="list-group-item list-group-item-action">{{category.name}}</a>
             {% endfor %}
-          </div>
-        </div>
+    </div>
+  </div>
 
   <div id='products' class="col-lg-9 mx-auto">
     <div class="row mx-auto" id="life2">
@@ -24,12 +26,52 @@
           <h5 class="card-title">{{food.title}}</h5>
           <p class="card-text">₹ {{food.price}}</p>
           <p class="card-text">{{food.category}}</p>
-        {% endfor %}
       </div>
 
+          <div class= "card-footer no -gutters">
+
+            {% if food|is_in_cart:request.session.cart %}
+
+            <div class = "row no-gutters" >         
+
+              <form action = "/menu#{{food.id}}" method = "post" class = "col-2">
+                {% csrf_token %}
+                <input hidden type="text" name ='product' value='{{food.id}}'>
+                <input hidden type="text" name ='remove' value='True'>
+                <input type ="submit" value = " - " class =" btn btn-block btn-light">
+              </form>
 
 
-      
+              <div class ="text-center col" > {{food|cart_qty:request.session.cart}} in cart </div>
+
+
+              <form action = "/menu#{{food.id}}" method = "post" class = "col-2">
+                {% csrf_token %}
+                <input hidden type="text" name ='product' value='{{food.id}}'>
+                
+                <input type ="submit" value = " + " class =" btn btn-block btn-light">
+              </form>
+              
+            </div>
+
+            {% else %}
+
+            <form action="/menu#{{food.id}}" method="POST">
+              {% csrf_token %}
+              <input hidden type="text" name ='product' value='{{food.id}}'>
+            <input type= "submit" class="btn btn-primary" id="life" value="Add To Cart">
+            </form>
+            {% endif %}
+
+
+            
+
+          </div>
+          
+        </div>
+      {% endfor %}
+        </div>
+        
 
 </body>
 </html>
