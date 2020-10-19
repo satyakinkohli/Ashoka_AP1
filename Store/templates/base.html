@@ -40,6 +40,11 @@
             background-color:moccasin;
             color:black;
           }
+
+}
+
+
+
           </style>
     </style>
   </head>
@@ -60,11 +65,16 @@
           <li class="nav-item active">
             <a class="nav-link" href="/menu" style="color: white">Menu <span class="sr-only">(current)</span></a>
           </li>
+          <li> <input type="text" placeholder="Find your food" name="search" size="50"> </li>
     
         </ul>
  
         <ul class="navbar-nav my-2 my-lg-0">
           {% if request.session.customer %}
+
+          
+
+          
           
           <div class="dropdown">
             <span><p style="margin-top: 15px; color: white"> Hello, {{request.session.name}}</p></span>
@@ -85,10 +95,12 @@
               <span class="badge badge-info", id="alright"> {{request.session.cart|total_products}}  </span> 
               <span class="sr-only">(current)</span></a>
           </li>
+          
           {% else %}
         <!--  <li class="nav-item"> -->
            <!-- <a class="nav-link" href="/signup" style="color: white">Signup <span class="sr-only">(current)</span></a> -->
            <!-- </li> -->
+           
           <li class="nav-item">
             <a class="nav-link" href="/login" style="color: white">Login <span class="sr-only">(current)</span></a>
           </li>
@@ -98,6 +110,8 @@
               <span class="badge badge-info", id="alright"> {{request.session.cart|total_products}}  </span>
               <span class="sr-only">(current)</span></a>
           </li>
+
+          
           {% endif %}
             
       
