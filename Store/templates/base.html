@@ -48,8 +48,8 @@
   font-size: 17px;
   border: 1px solid grey;
   float: left;
-  margin-left:20%;
-  width: 40%;
+  margin-left:40%;
+  width: 50%;
   background: #f1f1f1;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -60,7 +60,7 @@
 form.example button {
   float: right;
   width: 10%;
-  margin-right:30%;
+  margin-right:0%;
   padding: 5px;
   background: moccasin;
   color: white;
@@ -99,7 +99,7 @@ form.example button {
 
 
           
-          <li> <form action="{% url 'search' %}" method="GET">
+          <li> <form action="{% url 'search' %}" method="GET" class="example">
             <input type="text" placeholder="Find your food" name="q" size="50" > 
             <button type="submit">
               <i class="fa fa-search"></i>
