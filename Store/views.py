@@ -176,7 +176,7 @@ class Order_View(View):
 
 class SearchResults(ListView):
     model = Product
-    template_name = 'search_results.html'
+    template_name = 'search.html'
 
     def get_queryset(self):
         query = self.request.GET.get('q')
