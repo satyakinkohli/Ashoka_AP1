@@ -9,6 +9,7 @@ from .models.product import Product
 from .models.category import Category
 from .models.customer import Customer
 from .models.orders import Order
+from .models.wishlist import Wishlist
 from django.views import View
 from Store.middlewares.auth import auth_middleware
 from django.utils.decorators import method_decorator
@@ -23,7 +24,6 @@ class Index(View):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
-
         if cart:
             quantity = cart.get(product)
             if quantity:
@@ -88,6 +88,8 @@ class Signup(View):
         if not error:
             # customer.password = make_password('customer.password')
             customer.register()
+            request.session['customer'] = customer.id
+            request.session['name'] = customer.name
             return redirect("Nostalgia_Menu")
         else:
             data = {'error': error, 'saved_value': saved_value}
@@ -185,3 +187,27 @@ def BootstrapFilterView(request):
         'cart': cart
     }
     return render(request, 'search.html', stuff)
+
+
+
+class Wishlist_View(View):
+    def get(self, request):
+        customer = request.session.get('customer')
+        wishlist_items = Wishlist.get_wishlist_by_customerid(customer)
+        wishlist_items = wishlist_items.reverse()
+        return render(request, 'wishlist.html', {'wishlist_items': wishlist_items})
+
+    def post(self, request):
+        customer = request.session.get('customer')
+        product_id = request.POST.get('product')
+        #print(product_id)
+        products = Product.get_all_product_by_id([product_id])
+
+        for product in products:
+            wishlist = Wishlist(customer=Customer(id=customer),
+                        product=product,
+                        price=product.price,
+                        category=product.category)
+            wishlist.add_to_wishlist()
+
+        return redirect('Nostalgia_Menu')

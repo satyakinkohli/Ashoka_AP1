@@ -135,4 +135,4 @@ STATIC_URL = '/static/'
 MEDIA_URL = "/photo/products/"
 MEDIA_ROOT = BASE_DIR
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/menu'

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% load cart %}
+
+
+<div class="container">
+    <div class="border rounded p-4 m-4">
+        <p class="display-4 text-center">Wishlist</p>
+        <table class="table mx-auto">
+            
+            <thead>
+                <tr class="text-center">
+                    <th></th>
+                    <th>Product</th>
+                    <th>Ordering from</th>
+                    <th>Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for wishlist_item in wishlist_items %}
+                
+                <tr class="text-center">
+                    <td><img style="height: 100px;" src="{{wishlist_item.product.image.url}}" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="Product Image"></td>
+                    <td>{{wishlist_item.product.title}}</td>
+                    <td>{{wishlist_item.product.category}}</td>
+                    <td>₹ {{wishlist_item.product.price}}</td>
+                    
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+           
+
+        </table>
+
+        
+
+    </div>
+
+</div>
+
+
+{% endblock %}

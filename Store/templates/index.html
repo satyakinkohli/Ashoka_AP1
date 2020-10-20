@@ -86,6 +86,12 @@
                 <input hidden type="text" name ='product' value='{{product.id}}'>
               <input type= "submit" class="btn btn-primary" id="life" value="Add To Cart">
               </form>
+
+              <form action="/wishlist#{{product.id}}" method="POST">
+                {% csrf_token %}
+                <input hidden type="text" name ='product' value='{{product.id}}'>
+              <input type= "submit" class="btn btn-primary" id="life" value="Add To Wishlist">
+              </form>
               {% endif %}
   
   
