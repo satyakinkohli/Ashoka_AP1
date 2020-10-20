@@ -106,6 +106,20 @@ div {
   text-align: center;
 }
 
+#low {
+  width: 100%;
+  position: relative;
+  animation: somuchfun 10s 10;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  }
+
+@keyframes somuchfun {
+  0%   {color: black; left: 0px; top: 0px;}
+  55%  {background: bisque; left: 0px; right: 20000px}
+  100% {color: black; left: 20000px; top: 0px;}
+}
+
 #hey {
   margin-top: -100px;
 }
@@ -137,7 +151,7 @@ div {
  
 
 <div id="example1">
-  <h2 >What's New In The Store?</h2>
+  <h2 id="low" >What's New In The Store?</h2>
   <p> <a href = "/menu?category=1"> <img src= "https://i.imgur.com/pxOynV7.png" width="400" height="400" alt="hello logo"> </a> <a href ="/menu?category=5" > <img src= "https://i.imgur.com/8tVTVoa.png" width="350" height="350" alt="hello logo"> </a> <a href="/menu?category=3"> <img src= "https://i.imgur.com/68g1eTH.png" width="400" height="400" alt="hello logo"> </a>
 </p>
   <p id="high"> ORDER NOW!!!!! </p>
