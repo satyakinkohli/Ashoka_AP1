@@ -189,7 +189,6 @@ def BootstrapFilterView(request):
     return render(request, 'search.html', stuff)
 
 
-
 class Wishlist_View(View):
     def get(self, request):
         customer = request.session.get('customer')
@@ -200,14 +199,17 @@ class Wishlist_View(View):
     def post(self, request):
         customer = request.session.get('customer')
         product_id = request.POST.get('product')
-        #print(product_id)
         products = Product.get_all_product_by_id([product_id])
 
         for product in products:
             wishlist = Wishlist(customer=Customer(id=customer),
-                        product=product,
-                        price=product.price,
-                        category=product.category)
+                                product=product,
+                                price=product.price,
+                                category=product.category)
             wishlist.add_to_wishlist()
 
         return redirect('Nostalgia_Menu')
+
+
+def Profile(request):
+    return render(request, 'profile.html')

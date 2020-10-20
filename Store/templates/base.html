@@ -130,13 +130,14 @@ form.example button {
           {% if request.session.customer %}
 
 
-          
-
-          
-          
           <div class="dropdown">
             <span><p style="margin-top: 15px; color: white"> Hello, {{request.session.name}}</p></span>
             <div class="dropdown-content">
+
+              <p><li class="nav-item">
+                <a class="nav-link" colors href="/user-profile" style="color: maroon">Profile <span class="sr-only">(current)</span></a>
+              </li></p>
+
               <p><li class="nav-item">
               <a class="nav-link" colors href="/orders" style="color: maroon">Orders <span class="sr-only">(current)</span></a>
             </li></p>
