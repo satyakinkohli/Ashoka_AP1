@@ -43,10 +43,13 @@
             color:black;
           }
 
+          
+
           form.example input[type=text] {
   padding: 5px;
   font-size: 17px;
   border: 1px solid grey;
+  border-radius: 5px;
   float: left;
   margin-left:10%;
   width: 80%;
@@ -58,6 +61,7 @@
         
 
 form.example button {
+  border-radius: 5px;
   float: right;
   width: 10%;
   margin-right:0%;
@@ -113,7 +117,7 @@ form.example button {
           
           
           <li> <form action="{% url 'search' %}" method="GET" class="example">
-            <input type="text" placeholder="Find your food" name="q" size="50" > 
+            <input type="text" placeholder="    Find your food" name="q" size="50" > 
             <button type="submit">
               <i class="fa fa-search"></i>
             </button>
