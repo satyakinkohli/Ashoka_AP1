@@ -20,6 +20,14 @@
     color: #132743;
   }
 
+  #life5 {
+    background-color: maroon;
+  }
+
+  #buttondesign {
+    display:flex;
+  }
+
   
 
 </style>
@@ -80,20 +88,21 @@
               </div>
 
               {% else %}
-
-              <form action="/menu#{{product.id}}" method="POST">
+              <div id="buttondesign">
+             <form action="/menu#{{product.id}}" method="POST">
                 {% csrf_token %}
                 <input hidden type="text" name ='product' value='{{product.id}}'>
               <input type= "submit" class="btn btn-primary" id="life" value="Add To Cart">
-              </form>
-
+              </form> 
+            
               <form action="/wishlist#{{product.id}}" method="POST">
                 {% csrf_token %}
                 <input hidden type="text" name ='product' value='{{product.id}}'>
-              <input type= "submit" class="btn btn-primary" id="life" value="Add To Wishlist">
+              <input type= "submit" class="btn btn-primary" id="life5" value="Add To Wishlist">
               </form>
+              </div>
               {% endif %}
-  
+              
   
               
 
