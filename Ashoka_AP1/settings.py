@@ -38,6 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Store.apps.StoreConfig',
+    'django.contrib.sites' ,
+
+    #AllAuth
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #providers
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -122,3 +134,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = "/photo/products/"
 MEDIA_ROOT = BASE_DIR
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/login'
