@@ -208,6 +208,7 @@ class Wishlist_View(View):
                                 price=product.price,
                                 category=product.category)
             wishlist.add_to_wishlist()
+            
 
         return redirect('Nostalgia_Menu')
 
