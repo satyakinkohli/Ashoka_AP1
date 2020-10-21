@@ -47,6 +47,9 @@ class Index(View):
 
     def get(self, request):
         cart = request.session.get('cart')
+        customer=request.session.get('customer')
+        customer_correct = Customer.get_customer_through_id(customer)
+
         if not cart:
             request.session.cart = {}
 
@@ -59,7 +62,7 @@ class Index(View):
         else:
             products = Product.get_all_products()
 
-        data = {'products': products, 'categories': categories}
+        data = {'products': products, 'categories': categories, 'customer_correct' :customer_correct}
 
         return render(request, 'index.html', data)
 
