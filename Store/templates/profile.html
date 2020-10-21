@@ -3,62 +3,63 @@
 {% block content %}
 
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+  body {font-family: Arial, Helvetica, sans-serif;}
+  * {box-sizing: border-box;}
+  
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 16px;
+  }
+  
+  input[type=submit] {
+    background-color: maroon;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #132743;
+  }
+  
+  .container {
+    border-radius: 5px;
+    background-color: bisque;
+    padding: 50px;
+  }
+  
+  h1 {
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    padding: 40px 0px 20px 0px;
+  }
+  
+  </style>
+  
+  <h1>We want to know you better!</h1>
+  
+  <div class="container">
+    <form action="/user-profile" method = "POST">
+          <label for="fname">Full Name</label>
+          <input required type="text" id="fname" name="fullname" placeholder=""><br>
+  
+          <label for="mobile">Mobile Number</label>
+          <input required type="text" id="mobile" name="mobile" placeholder=""><br>
+  
+          <label for="address">Address</label>
+          <textarea required id="address" name="address" placeholder="" style="height:150px"></textarea>
+  
+          <input type="submit" value="Submit">
+    </form>
+  </div>
+  
+  
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
-
-input[type=submit] {
-  background-color: maroon;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #132743;
-}
-
-.container {
-  border-radius: 5px;
-  background-color: bisque;
-  padding: 30px;
-}
-
-h1 {
-  font-family: "Times New Roman", Times, serif;
-}
-
-</style>
-<body>
-
-<h1 style="text-align: center">We want to know you better!</h1>
-
-<div class="container">
-  <form action="/user-profile" method = "POST">
-        <label for="fname">Full Name</label>
-        <input required type="text" id="fname" name="fullname" placeholder=""><br>
-
-        <label for="mobile">Mobile Number</label>
-        <input required type="text" id="mobile" name="mobile" placeholder=""><br>
-
-        <label for="address">Address</label>
-        <textarea required id="address" name="address" placeholder="" style="height:150px"></textarea>
-
-        <input type="submit" value="Submit">
-  </form>
-</div>
-
-</body>
 
 {% endblock %}
