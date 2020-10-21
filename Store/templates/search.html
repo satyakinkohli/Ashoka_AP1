@@ -18,6 +18,17 @@
     color: #132743;
   }
 
+  #buttondesign {
+    display:flex;
+  }
+
+  #life5 {
+    background-color: maroon;
+   
+    
+  }
+
+
   
 
 </style>
@@ -74,7 +85,7 @@
             </div>
 
             {% else %}
-
+            <div id="buttondesign">
             <form action="/menu#{{food.id}}" method="POST">
               {% csrf_token %}
               <input hidden type="text" name ='product' value='{{food.id}}'>
@@ -86,6 +97,7 @@
                 <input hidden type="text" name ='product' value='{{food.id}}'>
               <input type= "submit" class="btn btn-primary" id="life5" value="Add To Wishlist">
               </form>
+            </div>
 
             {% endif %}
 
