@@ -5,7 +5,14 @@
 
 {% load cart %}
 
+<style>
 
+    #life6 {
+        background-color: #132743;
+        color: white;
+
+    }
+</style>
 
 <div class="container">
     <div class="border rounded p-4 m-4">
@@ -34,7 +41,7 @@
                     <td>  <form action = "/removal#{{wishlist_item.id}}" method = "post" class = "col-2">
                   {% csrf_token %}
                   <input hidden type="text" name ='removed' value='{{wishlist_item.id}}'>
-                  <input type="submit" name ='removed1' value='Remove from Wishlist'> </form> </td>
+                  <input type="submit" id="life6" name ='removed1' value='Remove from Wishlist'> </form> </td>
                 </tr>
 
                 {% endfor %}
