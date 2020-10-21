@@ -12,6 +12,17 @@
         padding-top: 30px;
     }
 
+    .buttons {
+width: 560px;
+margin: 0 auto;
+}
+
+    .action_btn {
+width: 500px;
+margin: 0 auto;
+padding:10px 7px 10px 10px;
+}
+
 </Style>
 
 <div class="container">
@@ -41,13 +52,17 @@
                     <input class="btn btn-sm btn-info col-lg-3" type="submit" value="Login">
                 </div>
                 {{user}}
-                <div> <button> <a href = "{% provider_login_url "facebook" method = "js_sdk" %}"> Facebook Login <a/> <button>
-                <button> <a href = "{% provider_login_url "google"  %}"> Google Login <a/> <button>
+                <div class="buttons">
+
+                    <div class="action_btn">
+        <button style="margin-right:2%"> <a href = "{% provider_login_url "facebook" method = "js_sdk" %}"> Facebook Login <a/> </button><button>
+                <a href = "{% provider_login_url "google"  %}"> Google Login <a/> </button> </div>
                 </div>
 
                 
             </form>
         </div>
+   
     <p> If you don't have an account, make an account by <a style= "color: darkcyan" href= "/signup" title="Home"> clicking here </a> </p>
     </div>
 </div>
