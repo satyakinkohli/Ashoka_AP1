@@ -1,5 +1,5 @@
-
 from django.shortcuts import redirect
+
 
 def auth_middleware(get_response):
     # One-time configuration and initialization.

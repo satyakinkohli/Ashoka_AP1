@@ -20,3 +20,8 @@ class Wishlist(models.Model):
     @staticmethod
     def get_wishlist_by_customerid(customer_id):
         return Wishlist.objects.filter(customer=customer_id).order_by('date')
+
+    @staticmethod
+    def get_wishlist_by_productid(product_id):
+        return Wishlist.objects.filter(product=product_id)
+

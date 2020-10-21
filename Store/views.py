@@ -1,3 +1,5 @@
+from itertools import count
+
 from django.shortcuts import render, redirect , HttpResponseRedirect
 # from django.contrib.auth.hashers import make_password, check_password
 
@@ -243,7 +245,7 @@ class Profile(View):
         error = None
 
         if len(str(mobile)) != 10:
-            error = "Please input a valid 10 digit mobile number."
+            error = "Your profile has not been updated. Please input a valid 10 digit mobile number."
         # mobile = int(mobile)
         # print(type(mobile))
 
@@ -263,8 +265,8 @@ class Profile(View):
 
 
 class Removal(View):
-    def post(self,request):
+    def post(self, request):
         wishlist_id = request.POST.get('removed')
-        wishlist_instance = Wishlist.objects.filter(id = wishlist_id)
+        wishlist_instance = Wishlist.objects.filter(id=wishlist_id)
         wishlist_instance.delete()
-        return redirect ('wishlist')
+        return redirect('wishlist')

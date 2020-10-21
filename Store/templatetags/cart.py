@@ -1,6 +1,8 @@
 from django import template
 from django.views import View
 
+from Store.models.wishlist import Wishlist
+
 register = template.Library()
 
 
@@ -49,3 +51,9 @@ def total_products(cart):
             sum += int(x)
 
     return sum
+
+
+@register.filter(name='number_interested')
+def number_interested(product_id):
+    serial = list(Wishlist.get_wishlist_by_productid(product_id))
+    return len(serial)
