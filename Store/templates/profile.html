@@ -78,16 +78,16 @@
         
       
   
-          <label for="address">Address</label>
+          <label for="address">Address</label><br>
           {% if customer.address %}
-          <input id="address" name="address" value="{{customer.address}}" style="height:150px">
+          <input id="address" name="address" value="{{customer.address}}" style="height:150px"><br>
   
           {% else %}
-          <input id="address" name="address" value="{{saved_values.address}}" style="height:150px">
+          <input id="address" name="address" value="{{saved_values.address}}" style="height:150px"><br>
   
           {% endif %}
   
-          
+          <br>
           <input type="submit" value="Submit">
   
     </form>
