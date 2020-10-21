@@ -214,3 +214,11 @@ class Wishlist_View(View):
 
 def Profile(request):
     return render(request, 'profile.html')
+
+
+class Removal(View):
+    def post(self,request):
+        wishlist_id = request.POST.get('removed')
+        wishlist_instance = Wishlist.objects.filter(id = wishlist_id)
+        wishlist_instance.delete()
+        return redirect ('wishlist')
