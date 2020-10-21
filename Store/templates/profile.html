@@ -39,6 +39,13 @@
     text-align: center;
     padding: 40px 0px 20px 0px;
   }
+
+  .try {
+    height: 100px;
+    width: 1042px;
+  }
+
+
   
   </style>
   
@@ -52,7 +59,7 @@
           <div class="alert alert-danger" role="alert">
             {{error}}
           </div>
-          
+         
         {% endif %}
           
   
@@ -80,10 +87,10 @@
   
           <label for="address">Address</label><br>
           {% if customer.address %}
-          <input id="address" name="address" value="{{customer.address}}" style="height:150px"><br>
+         <input id="address" name="address" value="  {{customer.address}}" class="try"><br>
   
           {% else %}
-          <input id="address" name="address" value="{{saved_values.address}}" style="height:150px"><br>
+          <input id="address" name="address" value="  {{saved_values.address}}" class="try"><br>
   
           {% endif %}
   
