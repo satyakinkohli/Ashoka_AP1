@@ -6,6 +6,10 @@ class Customer(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=500)
 
+    fname = models.CharField(max_length=50, default='')
+    mobile = models.IntegerField(null=True)
+    address = models.CharField(max_length=500, default='')
+
     def register(self):
         self.save()
 
@@ -13,6 +17,13 @@ class Customer(models.Model):
     def get_customer_through_email(email):
         try:
             return Customer.objects.get(email=email)
+        except:
+            return False
+
+    @staticmethod
+    def get_customer_through_id(id):
+        try:
+            return Customer.objects.get(id=id)
         except:
             return False
 

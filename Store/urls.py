@@ -14,6 +14,6 @@ urlpatterns = [
     path('orders', Order_View.as_view(), name='orders'),
     path('search', BootstrapFilterView, name='search'),
     path('wishlist', Wishlist_View.as_view(), name='wishlist'),
-    path('user-profile', Profile, name='profile'),
-    path('removal' , Removal.as_view() , name = 'removal'),
+    path('user-profile', Profile.as_view(), name='profile'),
+    path('removal' , Removal.as_view(), name='removal'),
 ]

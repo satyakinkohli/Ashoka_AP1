@@ -208,13 +208,58 @@ class Wishlist_View(View):
                                 price=product.price,
                                 category=product.category)
             wishlist.add_to_wishlist()
-            
 
         return redirect('Nostalgia_Menu')
 
 
-def Profile(request):
-    return render(request, 'profile.html')
+class Profile(View):
+    def get(self, request):
+        customer = request.session.get('customer')
+        customer_correct = Customer.get_customer_through_id(customer)
+
+        things = {
+            'customer': customer_correct,
+        }
+
+        return render(request, 'profile.html', things)
+
+    def post(self, request):
+        new_data = request.POST
+        fname = new_data.get('fname')
+        mobile = new_data.get('mobile')
+        address = new_data.get('address')
+
+        customer = request.session.get('customer')
+        customer_correct = Customer.get_customer_through_id(customer)
+
+        saved_values = {
+            'fname': fname,
+            'mobile': mobile,
+            'address': address,
+        }
+
+        print(saved_values)
+
+        error = None
+
+        if len(str(mobile)) != 10:
+            error = "Please input a valid 10 digit mobile number."
+        # mobile = int(mobile)
+        # print(type(mobile))
+
+        if not error:
+            if fname != customer_correct.fname:
+                customer_correct.fname = fname
+            if mobile != customer_correct.mobile:
+                customer_correct.mobile = mobile
+            if address != customer_correct.address:
+                customer_correct.address = address
+            customer_correct.register()
+
+            return redirect("profile")
+        else:
+            data = {'error': error, 'saved_values': saved_values}
+            return render(request, 'profile.html', data)
 
 
 class Removal(View):

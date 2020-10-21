@@ -42,24 +42,56 @@
   
   </style>
   
-  <h1>We want to know you better!</h1>
-  
+  <h1 style="text-align: center">We want to know you better!</h1>
+
   <div class="container">
     <form action="/user-profile" method = "POST">
-          <label for="fname">Full Name</label>
-          <input required type="text" id="fname" name="fullname" placeholder=""><br>
+      {% csrf_token %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+          
+        {% endif %}
+          
   
+          <label for="fname">Full Name</label>
+          {% if customer.fname %}
+          <input type="text" id="fname" name="fname" value="{{customer.fname}}"><br>
+  
+          {% else %}
+          <input type="text" id="fname" name="fname" value="{{saved_values.fname}}"><br>
+  
+          {% endif %}
+  
+        
+        
           <label for="mobile">Mobile Number</label>
-          <input required type="text" id="mobile" name="mobile" placeholder=""><br>
+          {% if customer.mobile %}
+          <input type="text" id="mobile" name="mobile" value="{{customer.mobile}}"><br>
+  
+          {% else %}
+          <input type="text" id="mobile" name="mobile" value="{{saved_values.mobile}}"><br>
+  
+          {% endif %}
+        
+      
   
           <label for="address">Address</label>
-          <textarea required id="address" name="address" placeholder="" style="height:150px"></textarea>
+          {% if customer.address %}
+          <input id="address" name="address" value="{{customer.address}}" style="height:150px">
   
+          {% else %}
+          <input id="address" name="address" value="{{saved_values.address}}" style="height:150px">
+  
+          {% endif %}
+  
+          
           <input type="submit" value="Submit">
+  
     </form>
   </div>
   
+  </body>
   
-
-
-{% endblock %}
+  {% endblock %}
