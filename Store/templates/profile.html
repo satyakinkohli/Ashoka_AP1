@@ -45,24 +45,17 @@ h1 {
 <h1 style="text-align: center">We want to know you better!</h1>
 
 <div class="container">
-  <form action="/action_page.php">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name.."><br>
+  <form action="/user-profile" method = "POST">
+        <label for="fname">Full Name</label>
+        <input required type="text" id="fname" name="fullname" placeholder=""><br>
 
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br>
+        <label for="mobile">Mobile Number</label>
+        <input required type="text" id="mobile" name="mobile" placeholder=""><br>
 
-    <label for="gender">Gender</label>
-    <select id="gender" name="country">
-      <option value="Female">Female</option>
-      <option value="Male">Male</option>
-      <option value="Other">Other</option>
-    </select><br>
+        <label for="address">Address</label>
+        <textarea required id="address" name="address" placeholder="" style="height:150px"></textarea>
 
-    <label for="address">Address</label>
-    <textarea id="address" name="address" placeholder="Please give your exact address...." style="height:150px"></textarea>
-
-    <input type="submit" value="Submit">
+        <input type="submit" value="Submit">
   </form>
 </div>
 
