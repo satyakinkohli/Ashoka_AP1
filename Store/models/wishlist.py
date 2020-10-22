@@ -25,3 +25,10 @@ class Wishlist(models.Model):
     def get_wishlist_by_productid(product_id):
         return Wishlist.objects.filter(product=product_id)
 
+    def one_wishlist_item_per_customer(self):
+        if Wishlist.objects.filter(product=self.product, customer=self.customer):
+            return True
+        else:
+            return False
+
+

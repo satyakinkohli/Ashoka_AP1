@@ -212,7 +212,11 @@ class Wishlist_View(View):
                                 product=product,
                                 price=product.price,
                                 category=product.category)
-            wishlist.add_to_wishlist()
+
+            if wishlist.one_wishlist_item_per_customer():
+                pass
+            else:
+                wishlist.add_to_wishlist()
 
         return redirect('Nostalgia_Menu')
 
