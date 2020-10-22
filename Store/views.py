@@ -47,7 +47,7 @@ class Index(View):
 
     def get(self, request):
         cart = request.session.get('cart')
-        customer=request.session.get('customer')
+        customer = request.session.get('customer')
         customer_correct = Customer.get_customer_through_id(customer)
 
         if not cart:
@@ -185,12 +185,15 @@ def BootstrapFilterView(request):
     cart = request.session.get('cart')
     qs = Product.objects.all()
     query = request.GET.get('q')
+    customer = request.session.get('customer')
+    customer_correct = Customer.get_customer_through_id(customer)
 
     qs = qs.filter(title__icontains=query)
     stuff = {
         'queryset': qs,
         'categories': categories,
-        'cart': cart
+        'cart': cart,
+        'customer_correct': customer_correct,
     }
     return render(request, 'search.html', stuff)
 
@@ -279,6 +282,16 @@ class Removal_Wishlist(View):
         return redirect('wishlist')
 
 
+class Removal_Cart(View):
+    def post(self, request):
+        product_id = request.POST.get('removed_cart')
+        cart = request.session.get('cart')
+        cart.pop(product_id)
+        request.session['cart'] = cart
+
+        return redirect('cart')
+
+
 class Transfer_from_Cart(View):
     def post(self, request):
         product_id = request.POST.get('transferred')
@@ -303,11 +316,30 @@ class Transfer_from_Cart(View):
         return redirect('cart')
 
 
-class Removal_Cart(View):
+class Transfer_from_Wishlist(View):
     def post(self, request):
-        product_id = request.POST.get('removed_cart')
+        wishlist_id = request.POST.get('transferred_wishlist')
+        wishlist_instance = Wishlist.objects.filter(id=wishlist_id)
+
+        for item in wishlist_instance:
+            product_id = item.product.id
+
+        wishlist_instance.delete()
+
         cart = request.session.get('cart')
-        cart.pop(product_id)
+
+        if cart:
+            quantity = cart.get(product_id)
+            if quantity:
+                cart[product_id] = quantity + 1
+            else:
+                cart[product_id] = 1
+        else:
+            cart = {product_id: 1}
+
         request.session['cart'] = cart
 
-        return redirect('cart')
+        return redirect('wishlist')
+
+
+

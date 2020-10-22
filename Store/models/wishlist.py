@@ -31,4 +31,8 @@ class Wishlist(models.Model):
         else:
             return False
 
-
+    def product_by_wishlist_id(self):
+        if Wishlist.objects.filter(product=self.product):
+            return True
+        else:
+            return False

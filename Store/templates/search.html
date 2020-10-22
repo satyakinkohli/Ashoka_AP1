@@ -92,11 +92,17 @@
             <input type= "submit" class="btn btn-primary" id="life" value="Add To Cart">
             </form>
 
-            <form action="/wishlist#{{food.id}}" method="POST">
-                {% csrf_token %}
+            {% if customer_correct %}
+              <form action="/wishlist#{{food.id}}" method="POST">
+              {% csrf_token %}
                 <input hidden type="text" name ='product' value='{{food.id}}'>
               <input type= "submit" class="btn btn-primary" id="life5" value="Add To Wishlist">
+              {% else %}
+              
+              <form action="/menu"> <input type= "submit" value="Add To Wishlist" class="btn btn-primary" id="life5" onclick="alert('Please sign in to continue')">
               </form>
+              {% endif %}
+            </form>
             </div>
 
             {% endif %}

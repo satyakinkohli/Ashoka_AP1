@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import Index, Login, Signup, home, logout, Cart, checkout, Order_View, BootstrapFilterView, Wishlist_View, \
-    Profile, Removal_Wishlist, Transfer_from_Cart, Removal_Cart
+    Profile, Removal_Wishlist, Removal_Cart, Transfer_from_Cart, Transfer_from_Wishlist
 
 urlpatterns = [
     path('', home, name="Nostalgia_Home"),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('removal', Removal_Wishlist.as_view(), name='removal'),
     path('removal-cart', Removal_Cart.as_view(), name='removal-cart'),
     path('transfer', Transfer_from_Cart.as_view(), name='transfer'),
+    path('transfer-wishlist', Transfer_from_Wishlist.as_view(), name='transfer-wishlist'),
 ]

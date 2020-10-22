@@ -26,6 +26,7 @@
                     <th>Ordering from</th>
                     <th>Price</th>
                     <th> </th>
+                    <th> </th>
                     
                 </tr>
             </thead>
@@ -38,10 +39,16 @@
                     <td>{{wishlist_item.product.title}}</td>
                     <td>{{wishlist_item.product.category}}</td>
                     <td>₹ {{wishlist_item.product.price}}</td>
+                    
+                    <td>  <form action = "/transfer-wishlist#{{wishlist_item.id}}" method = "post" class = "col-2">
+                        {% csrf_token %}
+                        <input hidden type="text" name ='transferred_wishlist' value='{{wishlist_item.id}}'>
+                        <input type="submit" id="life6" name ='transferred_wishlist1' value='Transfer to Cart'> </form> </td>
+                    
                     <td>  <form action = "/removal#{{wishlist_item.id}}" method = "post" class = "col-2">
-                  {% csrf_token %}
-                  <input hidden type="text" name ='removed' value='{{wishlist_item.id}}'>
-                  <input type="submit" id="life6" name ='removed1' value='Remove from Wishlist'> </form> </td>
+                        {% csrf_token %}
+                        <input hidden type="text" name ='removed' value='{{wishlist_item.id}}'>
+                        <input type="submit" id="life6" name ='removed1' value='Remove from Wishlist'> </form> </td>
                 </tr>
 
                 {% endfor %}
