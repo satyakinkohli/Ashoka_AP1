@@ -37,11 +37,11 @@
                     <td>  <form action = "/transfer#{{product.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
                         <input hidden type="text" name ='transferred' value='{{product.id}}'>
-                        <input type="submit" id="life6" name ='transferred1' value='Transfer to Wishlist'> </form> </td>
+                        <input type="submit"  name ='transferred1' value='Transfer to Wishlist'> </form> </td>
                     <td>  <form action = "/removal-cart#{{product.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
                         <input hidden type="text" name ='removed_cart' value='{{product.id}}'>
-                        <input type="submit" id="life6" name ='removed_cart1' value='Remove from Cart'> </form> </td>
+                        <input type="submit"  name ='removed_cart1' value='Remove from Cart'> </form> </td>
                 </tr>
 
                 {% endfor %}

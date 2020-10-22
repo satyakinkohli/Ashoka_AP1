@@ -12,6 +12,19 @@
         color: white;
 
     }
+
+    #life7 {
+        margin-left:13%;
+        
+
+    }
+
+    .life8 {
+        background-color: #132743;
+        color: white;
+    }
+
+
 </style>
 
 <div class="container">
@@ -40,15 +53,15 @@
                     <td>{{wishlist_item.product.category}}</td>
                     <td>₹ {{wishlist_item.product.price}}</td>
                     
-                    <td>  <form action = "/transfer-wishlist#{{wishlist_item.id}}" method = "post" class = "col-2">
+                    <td>  <form id="life7" action = "/transfer-wishlist#{{wishlist_item.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
                         <input hidden type="text" name ='transferred_wishlist' value='{{wishlist_item.id}}'>
-                        <input type="submit" id="life6" name ='transferred_wishlist1' value='Transfer to Cart'> </form> </td>
+                        <input type="submit" class="life8" name ='transferred_wishlist1' value='Transfer to Cart'> </form> </td>
                     
                     <td>  <form action = "/removal#{{wishlist_item.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
                         <input hidden type="text" name ='removed' value='{{wishlist_item.id}}'>
-                        <input type="submit" id="life6" name ='removed1' value='Remove from Wishlist'> </form> </td>
+                        <input type="submit" class="life8" name ='removed1' value='Remove from Wishlist'> </form> </td>
                 </tr>
 
                 {% endfor %}
