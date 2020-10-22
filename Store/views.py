@@ -148,7 +148,10 @@ class Cart(View):
         else:
             ids = list(request.session.get('cart').keys())
             products = Product.get_all_product_by_id(ids)
-            return render(request, 'cart.html', {'products': products})
+            customer = request.session.get('customer')
+            customer_correct = Customer.get_customer_through_id(customer)
+
+            return render(request, 'cart.html', {'products': products,'customer_correct': customer_correct})
 
 
 @auth_middleware
@@ -296,9 +299,14 @@ class Transfer_from_Cart(View):
     def post(self, request):
         product_id = request.POST.get('transferred')
         cart = request.session.get('cart')
-        cart.pop(product_id)
+        customer = request.session.get('customer')
+        if customer:
+            cart.pop(product_id)
+        else:
+            pass
+            
+            
         request.session['cart'] = cart
-
         customer = request.session.get('customer')
         products = Product.get_all_product_by_id([product_id])
 

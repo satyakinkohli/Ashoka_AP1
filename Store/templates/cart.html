@@ -46,8 +46,14 @@
                     <td>₹ {{product|item_total:request.session.cart}}</td>
                     <td>  <form action = "/transfer#{{product.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
+                        {% if customer_correct %}
                         <input hidden type="text" name ='transferred' value='{{product.id}}'>
+
                         <input type="submit"  class="life8" name ='transferred1' value='Transfer to Wishlist'> </form> </td>
+                        {% else %}
+              
+              <form action="/menu"> <input type= "submit" class="life8" value="Add To Wishlist" class="btn btn-primary" id="life5" onclick="alert('Please sign in to continue')">  </form>
+              {% endif %}
                     <td>  <form action = "/removal-cart#{{product.id}}" method = "post" class = "col-2">
                         {% csrf_token %}
                         <input hidden type="text" name ='removed_cart' value='{{product.id}}'>
