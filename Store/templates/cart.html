@@ -19,6 +19,8 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total Price</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +34,14 @@
                     <td>₹ {{product.price}}</td>
                     <td>{{product|cart_qty:request.session.cart}}</td>
                     <td>₹ {{product|item_total:request.session.cart}}</td>
+                    <td>  <form action = "/transfer#{{product.id}}" method = "post" class = "col-2">
+                        {% csrf_token %}
+                        <input hidden type="text" name ='transferred' value='{{product.id}}'>
+                        <input type="submit" id="life6" name ='transferred1' value='Transfer to Wishlist'> </form> </td>
+                    <td>  <form action = "/removal-cart#{{product.id}}" method = "post" class = "col-2">
+                        {% csrf_token %}
+                        <input hidden type="text" name ='removed_cart' value='{{product.id}}'>
+                        <input type="submit" id="life6" name ='removed_cart1' value='Remove from Cart'> </form> </td>
                 </tr>
 
                 {% endfor %}
@@ -40,7 +50,7 @@
 
             <tfoot>
                 <tr class="text-center">
-                    <th colspan="5"></th>
+                    <th colspan="6"></th>
                     <th>
                         ₹ {{products|cart_total:request.session.cart}}
                     </th>

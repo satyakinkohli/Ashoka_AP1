@@ -271,9 +271,43 @@ class Profile(View):
             return render(request, 'profile.html', data)
 
 
-class Removal(View):
+class Removal_Wishlist(View):
     def post(self, request):
         wishlist_id = request.POST.get('removed')
         wishlist_instance = Wishlist.objects.filter(id=wishlist_id)
         wishlist_instance.delete()
         return redirect('wishlist')
+
+
+class Transfer_from_Cart(View):
+    def post(self, request):
+        product_id = request.POST.get('transferred')
+        cart = request.session.get('cart')
+        cart.pop(product_id)
+        request.session['cart'] = cart
+
+        customer = request.session.get('customer')
+        products = Product.get_all_product_by_id([product_id])
+
+        for product in products:
+            wishlist = Wishlist(customer=Customer(id=customer),
+                                product=product,
+                                price=product.price,
+                                category=product.category)
+
+            if wishlist.one_wishlist_item_per_customer():
+                pass
+            else:
+                wishlist.add_to_wishlist()
+
+        return redirect('cart')
+
+
+class Removal_Cart(View):
+    def post(self, request):
+        product_id = request.POST.get('removed_cart')
+        cart = request.session.get('cart')
+        cart.pop(product_id)
+        request.session['cart'] = cart
+
+        return redirect('cart')
