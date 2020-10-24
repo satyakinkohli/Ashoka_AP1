@@ -354,7 +354,6 @@ class Rating(View):
     def post(self, request):
         order_id = request.POST.get('rating')
         order_instance = Order.objects.filter(id=order_id)
-        print(order_instance)
         rating1 = request.POST.get('rating1')
 
         for item in order_instance:
