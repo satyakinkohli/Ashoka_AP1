@@ -36,7 +36,16 @@
   background-color:cornsilk;
   text-align:center;
   font-style: bold;
+  color: maroon;
   
+}
+
+#line2 {
+  background-color:cornsilk;
+  text-align:center;
+  font-style: bold;
+  color: #132743;
+
 }
   
 
@@ -71,7 +80,7 @@
                 <p class="card-text">₹ {{product.price}}</p>
                 <!-- {{ product | is_in_cart:request.session.cart }} -->
                 <p class="card-text">{{product.category}}</p>
-                <p class="card-title" id="line">{{product.id|number_interested}} Interested</p>
+                <p class="card-title" id="line2">{{product.id|number_interested}} Interested</p>
                 <p class="card-title" id="line">Rating: {{product.id|ratings}}/5.0 stars</p>
                 
             </div>

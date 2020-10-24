@@ -6,8 +6,27 @@
 {% load cart %}
 
 
+<style>
+
+#life9 {
+    margin-right: 50%;
+    width:80px;
+    height: 24px;
+    padding-bottom: 10px;
+    background-color: bisque;
+    text-align: center;
+    }
+
+    .life9 {
+    width:80px;
+    height: 24px;
+    background-color: bisque;
+    text-align: center;
+    }
+</style>
+
 <div class="container">
-    <div class="border rounded p-4 m-4">
+    <div class="border rounded p-1 m-1">
         <p class="display-4 text-center">My Orders</p>
         <table class="table mx-auto">
             
@@ -35,19 +54,19 @@
                     <td>₹ {{order.price}}</td>
                     <td>{{order.quantity}}</td>
                     <td>₹ {{order.quantity|multiply:order.price}}</td>
-                    <td>  <form action = "/rating#{{order.id}}" method = "post"  class = "col-3"  value='{{order.id}}'>
+                    <td> <form action = "/rating#{{order.id}}" method = "post" value='{{order.id}}'>
                         {% csrf_token %}
                         <label for="rating1"></label>
-                            <select id="rating1" name="rating1">
-                                <option value="none" selected disabled hidden> Rate </option>
+                            <select class="life9"  id="rating1" name="rating1">
+                                <option value="none" selected disabled hidden> Utility </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
-                    <td> <input hidden type="text" name ='rating' value='{{order.id}}'> </td> 
-                    <td> <input type="Submit"> </td> 
+                 <td> <input  hidden type="text" name ='rating' value='{{order.id}}'> </td>
+                <td> <input id="life9" type="Submit" value="Rate">  </td>
                 </tr>
 
                 {% endfor %}
