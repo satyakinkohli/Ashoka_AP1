@@ -1,6 +1,7 @@
 from django import template
 from django.views import View
 
+from Store.models import Order
 from Store.models.wishlist import Wishlist
 
 register = template.Library()
@@ -57,3 +58,26 @@ def total_products(cart):
 def number_interested(product_id):
     serial = list(Wishlist.get_wishlist_by_productid(product_id))
     return len(serial)
+
+
+@register.filter(name='ratings')
+def ratings(product_id):
+    serial = Order.get_orders_by_orderid(product_id)
+    total_ratings = len(serial)
+
+    if total_ratings == 0:
+        total_ratings = 1
+    else:
+        pass
+
+    opinion = 0
+    for item in serial:
+        opinion += item.rating
+
+    rated = opinion / total_ratings
+    if rated == 0:
+        rated = "-"
+    else:
+        pass
+
+    return rated

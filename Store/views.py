@@ -151,7 +151,7 @@ class Cart(View):
             customer = request.session.get('customer')
             customer_correct = Customer.get_customer_through_id(customer)
 
-            return render(request, 'cart.html', {'products': products,'customer_correct': customer_correct})
+            return render(request, 'cart.html', {'products': products, 'customer_correct': customer_correct})
 
 
 @auth_middleware
@@ -350,4 +350,16 @@ class Transfer_from_Wishlist(View):
         return redirect('wishlist')
 
 
+class Rating(View):
+    def post(self, request):
+        order_id = request.POST.get('rating')
+        order_instance = Order.objects.filter(id=order_id)
+        print(order_instance)
+        rating1 = request.POST.get('rating1')
 
+        for item in order_instance:
+            item.rating = rating1
+
+            item.place_order()
+
+        return redirect('orders')

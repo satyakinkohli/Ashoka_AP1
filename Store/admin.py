@@ -8,7 +8,7 @@ from .models.wishlist import Wishlist
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['title', 'price', 'availability', 'category', 'rating', 'no_of_reviews','image']
+    list_display = ['title', 'price', 'availability', 'category', 'no_of_reviews', 'image']
 
 
 class AdminCategory(admin.ModelAdmin):
