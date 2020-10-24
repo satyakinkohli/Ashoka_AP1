@@ -35,11 +35,11 @@
                     <td>₹ {{order.price}}</td>
                     <td>{{order.quantity}}</td>
                     <td>₹ {{order.quantity|multiply:order.price}}</td>
-                    <td>  <form action = "/rating#{{order.id}}" method = "post" class = "col-3"  value='{{order.id}}'>
+                    <td>  <form action = "/rating#{{order.id}}" method = "post"  class = "col-3"  value='{{order.id}}'>
                         {% csrf_token %}
                         <label for="rating1"></label>
-                       <select id="rating1" name="rating1">
-                                <option value="none" selected disabled hidden> Select an option</option>
+                            <select id="rating1" name="rating1">
+                                <option value="none" selected disabled hidden> Rate </option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -47,7 +47,7 @@
                                 <option value="5">5</option>
                             </select>
                     <td> <input hidden type="text" name ='rating' value='{{order.id}}'> </td> 
-                    <td>   <input type="Submit">   </td> 
+                    <td> <input type="Submit"> </td> 
                 </tr>
 
                 {% endfor %}

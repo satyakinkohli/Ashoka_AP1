@@ -74,7 +74,7 @@ def ratings(product_id):
     for item in serial:
         opinion += item.rating
 
-    rated = opinion / total_ratings
+    rated = round((opinion / total_ratings), 2)
     if rated == 0:
         rated = "-"
     else:
