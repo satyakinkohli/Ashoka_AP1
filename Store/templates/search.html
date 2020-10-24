@@ -28,6 +28,22 @@
     
   }
 
+  #line {
+  background-color:cornsilk;
+  text-align:center;
+  font-style: bold;
+  color: maroon;
+  
+}
+
+#line2 {
+  background-color:cornsilk;
+  text-align:center;
+  font-style: bold;
+  color: #132743;
+
+}
+  
 
   
 
@@ -56,6 +72,8 @@
           <h5 class="card-title">{{food.title}}</h5>
           <p class="card-text">₹ {{food.price}}</p>
           <p class="card-text">{{food.category}}</p>
+          <p class="card-title" id="line2">{{food.id|number_interested}} Interested</p>
+                <p class="card-title" id="line">Rating: {{food.id|ratings}}/5.0 stars</p>
       </div>
 
           <div class= "card-footer no -gutters">
