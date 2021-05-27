@@ -9,6 +9,8 @@ CITATIONS:
 NOTES:
 1) A login from Google and/or Facebook (OAuth) does not allow proper interaction with the website as the customer is not incorporated into the database, although the login is executed. Customers who have registered from the website itself can interact with all of the features.
 
+
+
 Youtube link for project video: https://youtu.be/s0iGFmY7Pzc
 
 <a href="https://youtu.be/s0iGFmY7Pzc" target="_blank"><img src="https://i9.ytimg.com/vi/s0iGFmY7Pzc/mq2.jpg?sqp=CNyPv4UG&rs=AOn4CLAOLIttGrbV5KX7p7vV6CKkxX1vKA" 
