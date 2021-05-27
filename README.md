@@ -13,5 +13,4 @@ NOTES:
 
 Youtube link for project video: https://youtu.be/s0iGFmY7Pzc
 
-<a href="https://youtu.be/s0iGFmY7Pzc" target="_blank"><img src="https://i9.ytimg.com/vi/s0iGFmY7Pzc/mq2.jpg?sqp=CNyPv4UG&rs=AOn4CLAOLIttGrbV5KX7p7vV6CKkxX1vKA" 
-alt="Youtube link for project video" width="100%" height="100%" border="10" /></a>
+<a href="https://youtu.be/s0iGFmY7Pzc" rel="noreferrer noopener" target="_blank"><img src="https://i9.ytimg.com/vi/s0iGFmY7Pzc/mq2.jpg?sqp=CNyPv4UG&rs=AOn4CLAOLIttGrbV5KX7p7vV6CKkxX1vKA" alt="Youtube link for project video" width="100%" height="100%" border="10" /></a>
