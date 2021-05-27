@@ -11,5 +11,5 @@ NOTES:
 
 Youtube link for project video: https://youtu.be/s0iGFmY7Pzc
 
-<a href="https://youtu.be/s0iGFmY7Pzc" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+<a href="https://youtu.be/s0iGFmY7Pzc" target="_blank"><img src="https://i9.ytimg.com/vi/s0iGFmY7Pzc/mq2.jpg?sqp=CNyPv4UG&rs=AOn4CLAOLIttGrbV5KX7p7vV6CKkxX1vKA" 
 alt="Youtube link for project video" width="240" height="180" border="10" /></a>
