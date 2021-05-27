@@ -10,3 +10,6 @@ NOTES:
 1) A login from Google and/or Facebook (OAuth) does not allow proper interaction with the website as the customer is not incorporated into the database, although the login is executed. Customers who have registered from the website itself can interact with all of the features.
 
 Youtube link for project video: https://youtu.be/s0iGFmY7Pzc
+
+<a href="https://youtu.be/s0iGFmY7Pzc" target="_blank"><img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" 
+alt="Youtube link for project video" width="240" height="180" border="10" /></a>
