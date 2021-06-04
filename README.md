@@ -2,9 +2,7 @@
 Ashoka University | Advanced Programming; Project 1 | E-Commerce Website
 
 Team:
-1) Satyakin Kohli
-2) Mehul Gupta
-3) Aditi TIbarewal
+1) Satyakin Kohli 2) Mehul Gupta 3) Aditi TIbarewal
 
 
 <h3> Project Tutorial Video: </h3>
